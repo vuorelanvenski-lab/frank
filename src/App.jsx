@@ -52,13 +52,13 @@ export default function App() {
     setFormData(studentData)
   }, [studentData])
 
-  // Dynamically sync status bar / theme color with active tab
+  // Dynamically sync status bar / theme color: ONLY blue on 'card' tab, pink everywhere else
   useEffect(() => {
-    const topColor = (activeTab === 'menu' || activeTab === 'profile') ? '#e60067' : '#6588d3'
+    const topColor = (!isLoading && activeTab === 'card') ? '#6588d3' : '#e60067'
     document.documentElement.style.setProperty('--theme-top-color', topColor)
     const metaTheme = document.querySelector('meta[name="theme-color"]')
     if (metaTheme) metaTheme.setAttribute('content', topColor)
-  }, [activeTab])
+  }, [activeTab, isLoading])
 
   const showToast = (msg) => {
     setToastMessage(msg)
