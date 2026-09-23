@@ -701,11 +701,7 @@ export default function App() {
           {(activeTab === 'menu' || activeTab === 'profile') && <div className="nav-indicator" />}
         </button>
       </nav>
-
-      {/* iOS Home Indicator Bar */}
-      <div className="home-indicator">
-        <div className="home-indicator-bar" />
-      </div>
     </div>
   )
 }
+

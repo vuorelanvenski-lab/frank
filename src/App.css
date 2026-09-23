@@ -396,9 +396,9 @@
   border-top: 1px solid #f0f2f5;
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
-  padding: 10px 12px 6px 12px;
-  min-height: 68px;
+  align-items: center;
+  padding: 6px 10px max(6px, env(safe-area-inset-bottom)) 10px;
+  min-height: 54px;
   flex-shrink: 0;
 }
 
@@ -410,7 +410,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2px 6px;
+  padding: 2px 4px;
   color: #555555;
   font-family: inherit;
   position: relative;
@@ -424,8 +424,8 @@
 }
 
 .nav-icon {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -433,12 +433,12 @@
 }
 
 .nav-icon svg {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
 }
 
 .nav-label {
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.1px;
   white-space: nowrap;
@@ -455,34 +455,13 @@
 
 .nav-indicator {
   position: absolute;
-  bottom: -4px;
+  bottom: -3px;
   left: 50%;
   transform: translateX(-50%);
-  width: 74px;
+  width: 64px;
   height: 2.5px;
   background-color: #e60067;
   border-radius: 2px;
-}
-
-/* ========================================
-   iOS Home Indicator
-   ======================================== */
-.home-indicator {
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 4px;
-  padding-bottom: max(10px, env(safe-area-inset-bottom));
-  flex-shrink: 0;
-}
-
-.home-indicator-bar {
-  width: 138px;
-  height: 5px;
-  background-color: #000000;
-  border-radius: 100px;
-  opacity: 0.85;
 }
 
 /* ========================================
