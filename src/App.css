@@ -37,9 +37,9 @@
    Top Section: Header + Profile Avatar
    ======================================== */
 .card-top-section {
-  height: 38%;
-  min-height: 38%;
-  max-height: 38%;
+  height: 42%;
+  min-height: 42%;
+  max-height: 42%;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -67,21 +67,21 @@
   color: #ffffff;
   font-size: 14.5px;
   font-weight: 600;
-  padding: 6px 22px;
+  padding: 7px 24px;
   border-radius: 20px;
   letter-spacing: 0.2px;
   user-select: none;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
-/* Avatar Section pushed down cleanly */
+/* Avatar Section with generous space */
 .avatar-section {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-top: 2px;
+  padding-top: 10px;
 }
 
 .avatar-glow-wrapper {
@@ -91,13 +91,13 @@
   justify-content: center;
 }
 
-/* Profile Picture: More compact with smaller, subtle blue glow */
+/* Profile Picture: Original size with full blue glow */
 .avatar-circle {
   position: relative;
-  width: clamp(165px, 21vh, 192px);
-  height: clamp(165px, 21vh, 192px);
+  width: clamp(188px, 25vh, 218px);
+  height: clamp(188px, 25vh, 218px);
   border-radius: 50%;
-  box-shadow: 0 0 16px 3px rgba(101, 136, 211, 0.28);
+  box-shadow: 0 0 56px 20px rgba(101, 136, 211, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,13 +127,13 @@
   display: block;
 }
 
-/* Pure diffuse pulsing glow behind Frank badge - matching frank.png (#fd1e6e) */
+/* Pure diffuse pulsing glow behind Frank badge */
 .frank-badge-glow {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: clamp(52px, 6.8vh, 60px);
-  height: clamp(52px, 6.8vh, 60px);
+  bottom: 3px;
+  right: 3px;
+  width: clamp(58px, 7.8vh, 68px);
+  height: clamp(58px, 7.8vh, 68px);
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
@@ -156,10 +156,10 @@
 /* Frank circular badge - transparent background so colors match perfectly */
 .frank-badge {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: clamp(52px, 6.8vh, 60px);
-  height: clamp(52px, 6.8vh, 60px);
+  bottom: 3px;
+  right: 3px;
+  width: clamp(58px, 7.8vh, 68px);
+  height: clamp(58px, 7.8vh, 68px);
   border-radius: 50%;
   background: transparent;
   overflow: hidden;
@@ -190,7 +190,7 @@
   flex: 1;
   min-height: 0; /* Critical so flex child shrinks properly */
   background: #ffffff;
-  padding: 2px 22px 8px 22px;
+  padding: 4px 24px 14px 24px;
   display: flex;
   flex-direction: column;
   overflow: hidden; /* Strictly non-scrollable */
@@ -200,25 +200,25 @@
 
 /* Student Identity (Name & DOB) */
 .student-identity {
-  margin-top: 4px;
+  margin-top: 6px;
   text-align: left;
 }
 
 .student-name {
-  font-size: clamp(22px, 2.7vh, 25px);
+  font-size: clamp(23px, 3vh, 26.5px);
   font-weight: 800;
   color: #000000;
   letter-spacing: -0.4px;
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
-/* Tighter spacing under birthdate */
+/* Spacing between birthdate and name */
 .student-birthdate {
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 500;
   color: #222222;
-  margin: 4px 0 8px 0;
+  margin: 8px 0 12px 0;
   letter-spacing: 0.1px;
 }
 
@@ -226,16 +226,16 @@
 .card-divider {
   height: 1px;
   background: #d1d5db;
-  margin: 6px 0;
+  margin: 10px 0;
   width: 100%;
 }
 
-/* Institution & SYL Row */
+/* Institution & SYL Row - Bigger Typography */
 .institution-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0;
+  padding: 1px 0;
 }
 
 .institution-info {
@@ -328,38 +328,38 @@
   letter-spacing: 0.1px;
 }
 
-/* Small gap between validity date and button */
+/* Gap between validity date and button */
 .validity-date-row {
   margin-top: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   display: flex;
   align-items: baseline;
   gap: 7px;
 }
 
 .validity-date-number {
-  font-size: clamp(23px, 3vh, 26px);
+  font-size: clamp(24px, 3.3vh, 27.5px);
   font-weight: 800;
   color: #000000;
   letter-spacing: -0.3px;
 }
 
 .validity-date-suffix {
-  font-size: clamp(20px, 2.6vh, 23px);
+  font-size: clamp(21px, 2.8vh, 24px);
   font-weight: 500;
   color: #000000;
   letter-spacing: -0.2px;
 }
 
-/* Action button: tighter space */
+/* Action button: original spacious margins */
 .inspection-button {
   background-color: #6588d3;
   color: #ffffff;
   border: none;
   border-radius: 25px;
-  height: clamp(44px, 5.4vh, 48px);
+  height: clamp(46px, 5.8vh, 50px);
   width: 100%;
-  font-size: clamp(14px, 1.8vh, 15px);
+  font-size: clamp(14.5px, 1.8vh, 15.5px);
   font-weight: 600;
   letter-spacing: 0.1px;
   cursor: pointer;
@@ -369,8 +369,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 4px;
-  margin-bottom: 10px;
+  margin-top: 6px;
+  margin-bottom: 18px;
   flex-shrink: 0;
 }
 
