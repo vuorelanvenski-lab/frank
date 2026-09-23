@@ -1,0 +1,899 @@
+/* ========================================
+   FRANK STUDENT CARD STYLES
+   Pixel-perfect match to official Frank App
+   Responsive across mobile viewports and desktop
+   ======================================== */
+
+.phone-container {
+  width: 375px;
+  height: 840px;
+  max-height: 96vh;
+  background: #ffffff;
+  border-radius: 40px;
+  box-shadow: 
+    0 24px 70px rgba(0, 0, 0, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border: 7px solid #1c1c1e;
+}
+
+/* Responsive for real mobile screens */
+@media (max-width: 480px) {
+  .phone-container {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* ========================================
+   Top Section: Header + Profile Avatar
+   ======================================== */
+.card-top-section {
+  height: 42%;
+  min-height: 42%;
+  max-height: 42%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Header - Bigger Top Bar */
+.card-header {
+  background-color: #6588d3;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-pill {
+  background: rgba(15, 40, 110, 0.26);
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 7px 24px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+  user-select: none;
+  margin-top: 6px;
+}
+
+/* Avatar Section pushed down a little bit */
+.avatar-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-top: 10px;
+}
+
+.avatar-glow-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Profile Picture: Even bigger */
+.avatar-circle {
+  position: relative;
+  width: clamp(188px, 25vh, 218px);
+  height: clamp(188px, 25vh, 218px);
+  border-radius: 50%;
+  box-shadow: 0 0 56px 20px rgba(101, 136, 211, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef3f9;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-placeholder svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.avatar-custom-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Pure diffuse pulsing glow behind Frank badge - 1 pulse/sec (1s tempo) */
+.frank-badge-glow {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: clamp(58px, 7.8vh, 68px);
+  height: clamp(58px, 7.8vh, 68px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: frankPureGlowPulse 1s ease-in-out infinite;
+}
+
+@keyframes frankPureGlowPulse {
+  0% {
+    box-shadow: 0 0 6px 1px rgba(230, 0, 103, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 14px 3px rgba(230, 0, 103, 0.5),
+                0 0 22px 6px rgba(230, 0, 103, 0.22);
+  }
+  100% {
+    box-shadow: 0 0 6px 1px rgba(230, 0, 103, 0.2);
+  }
+}
+
+/* Frank hot-pink circular badge */
+.frank-badge {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: clamp(58px, 7.8vh, 68px);
+  height: clamp(58px, 7.8vh, 68px);
+  border-radius: 50%;
+  background: #e60067;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  z-index: 2;
+}
+
+.frank-badge:hover {
+  transform: scale(1.06);
+}
+
+.frank-badge-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ========================================
+   Main Body (Remaining 60%)
+   ======================================== */
+.card-body {
+  flex: 1;
+  min-height: 0; /* Critical so flex child shrinks properly */
+  background: #ffffff;
+  padding: 4px 24px 14px 24px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card-body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Student Identity (Name & DOB) */
+.student-identity {
+  margin-top: 6px;
+  text-align: left;
+}
+
+.student-name {
+  font-size: clamp(23px, 3vh, 26.5px);
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.4px;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* More spacing between birthdate and name */
+.student-birthdate {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #222222;
+  margin: 8px 0 12px 0;
+  letter-spacing: 0.1px;
+}
+
+/* Dividers */
+.card-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 10px 0;
+}
+
+/* Institution & SYL Row - Bigger Typography */
+.institution-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 0;
+}
+
+.institution-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+}
+
+.university-name {
+  font-size: clamp(15px, 2vh, 16.5px);
+  font-weight: 400;
+  color: #111827;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.study-level {
+  font-size: clamp(14px, 1.8vh, 15px);
+  font-weight: 400;
+  color: #374151;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.student-number {
+  font-size: clamp(14px, 1.8vh, 15px);
+  font-weight: 400;
+  color: #4b5563;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* SYL Logo Stack */
+.syl-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2px;
+}
+
+.syl-pillar-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.syl-logo-img {
+  width: 50px;
+  height: auto;
+  display: block;
+}
+
+/* Validity & Action Button */
+.validity-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.status-check-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #48cf9b;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-check-circle svg {
+  width: 11.5px;
+  height: 11.5px;
+}
+
+.status-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+  letter-spacing: 0.1px;
+}
+
+/* Small gap between validity date and button */
+.validity-date-row {
+  margin-top: 2px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.validity-date-number {
+  font-size: clamp(24px, 3.3vh, 27.5px);
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.3px;
+}
+
+.validity-date-suffix {
+  font-size: clamp(21px, 2.8vh, 24px);
+  font-weight: 500;
+  color: #000000;
+  letter-spacing: -0.2px;
+}
+
+/* Action button: small space above, generous space below before bottom bar */
+.inspection-button {
+  background-color: #6588d3;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  height: clamp(46px, 5.8vh, 50px);
+  width: 100%;
+  font-size: clamp(14.5px, 1.8vh, 15.5px);
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(101, 136, 211, 0.25);
+  transition: all 0.18s ease;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.inspection-button:hover {
+  background-color: #5375c0;
+  box-shadow: 0 4px 12px rgba(101, 136, 211, 0.35);
+}
+
+.inspection-button:active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+   Bottom Navigation Bar
+   ======================================== */
+.bottom-nav {
+  background: #ffffff;
+  border-top: 1px solid #f0f2f5;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 10px 12px 6px 12px;
+  min-height: 68px;
+  flex-shrink: 0;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  color: #555555;
+  font-family: inherit;
+  position: relative;
+  transition: color 0.15s ease;
+  flex: 1;
+}
+
+.nav-item--disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.nav-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.nav-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.nav-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+}
+
+/* Active Tab: Opiskelijakortti */
+.nav-item--active {
+  color: #000000;
+}
+
+.nav-item--active .nav-label {
+  font-weight: 700;
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74px;
+  height: 2.5px;
+  background-color: #e60067;
+  border-radius: 2px;
+}
+
+/* ========================================
+   iOS Home Indicator
+   ======================================== */
+.home-indicator {
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  flex-shrink: 0;
+}
+
+.home-indicator-bar {
+  width: 138px;
+  height: 5px;
+  background-color: #000000;
+  border-radius: 100px;
+  opacity: 0.85;
+}
+
+/* ========================================
+   Toast Notification
+   ======================================== */
+.toast-notification {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: #ffffff;
+  padding: 9px 18px;
+  border-radius: 30px;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  animation: toastFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ========================================
+   Menu View (Exact Replica)
+   ======================================== */
+.menu-view {
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Pink Header */
+.menu-header {
+  background: #e60067;
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: max(8px, env(safe-area-inset-top));
+  flex-shrink: 0;
+}
+
+.menu-frank-logo {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1;
+  font-family: inherit;
+  user-select: none;
+}
+
+/* Menu Items List */
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 17px 22px;
+  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #f0f2f5;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+  font-family: inherit;
+}
+
+.menu-item:hover {
+  background-color: #f9fafb;
+}
+
+.menu-item:active {
+  background-color: #f3f4f6;
+}
+
+.menu-item-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  color: #111827;
+  flex-shrink: 0;
+}
+
+.menu-item-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.menu-item-label {
+  font-size: 16.5px;
+  font-weight: 500;
+  color: #111827;
+  letter-spacing: -0.2px;
+}
+
+.menu-item-chevron {
+  margin-left: auto;
+  width: 18px;
+  height: 18px;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item-chevron svg {
+  width: 16px;
+  height: 16px;
+}
+
+.menu-spacer {
+  flex: 1;
+  min-height: 36px;
+}
+
+/* Footer (Version & Social Buttons) */
+.menu-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 20px 24px 20px;
+  flex-shrink: 0;
+}
+
+.menu-version-text {
+  font-size: 15px;
+  color: #374151;
+  font-weight: 400;
+  margin: 0 0 18px 0;
+  letter-spacing: 0.1px;
+}
+
+.menu-social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.social-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  text-decoration: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.social-circle:hover {
+  transform: scale(1.08);
+}
+
+.social-circle:active {
+  transform: scale(0.96);
+}
+
+/* ========================================
+   Profile Editor View
+   ======================================== */
+.profile-view {
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.profile-header {
+  background: #e60067;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  padding-top: max(10px, env(safe-area-inset-top));
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.profile-back-button {
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.profile-back-button:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.profile-header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.profile-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 22px 28px 22px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Avatar Upload & Preview */
+.profile-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f1f3f6;
+}
+
+.profile-avatar-wrapper {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #e5e7eb;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 12px;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-avatar-default {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-avatar-default svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.profile-avatar-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-upload-photo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 15px;
+  background: #f3f4f6;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.btn-upload-photo:hover {
+  background: #e5e7eb;
+}
+
+.btn-remove-photo {
+  padding: 7px 14px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.btn-remove-photo:hover {
+  background: #fecaca;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10.5px 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #111827;
+  background: #ffffff;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #e60067;
+  box-shadow: 0 0 0 3px rgba(230, 0, 103, 0.14);
+}
+
+.profile-actions {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-save-profile {
+  width: 100%;
+  padding: 13px;
+  background: #e60067;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(230, 0, 103, 0.25);
+  font-family: inherit;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-save-profile:hover {
+  background: #d0005d;
+}
+
+.btn-save-profile:active {
+  transform: scale(0.99);
+}
+
+.btn-reset-profile {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: #6b7280;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.15s ease;
+}
+
+.btn-reset-profile:hover {
+  color: #ef4444;
+}
