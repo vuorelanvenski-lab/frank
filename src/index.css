@@ -9,6 +9,7 @@
 :root {
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --bg-color: #eaedf2;
+  --theme-top-color: #6588d3;
   --text-color: #111827;
 }
 
@@ -22,8 +23,15 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  /* Automatically adds padding matching the exact height of the top status bar/notch */
+  padding-top: env(safe-area-inset-top);
 }
 
 #root {
@@ -33,4 +41,18 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    background-color: var(--theme-top-color, #6588d3) !important;
+  }
+
+  #root {
+    background-color: var(--theme-top-color, #6588d3);
+    align-items: stretch;
+    height: 100%;
+    overflow: hidden;
+  }
 }

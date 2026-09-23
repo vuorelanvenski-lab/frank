@@ -17,10 +17,19 @@ const DEFAULT_STUDENT = {
 }
 
 export default function App() {
-  // Navigation: 'card' | 'menu' | 'profile'
+  // Navigation: 'card' | 'menu' | 'profile' | 'edut' | 'viestit'
   const [activeTab, setActiveTab] = useState('card')
   const [toastMessage, setToastMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const fileInputRef = useRef(null)
+
+  // App splash loading timer
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1800)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Student Data persisted in localStorage
   const [studentData, setStudentData] = useState(() => {
@@ -42,6 +51,14 @@ export default function App() {
   useEffect(() => {
     setFormData(studentData)
   }, [studentData])
+
+  // Dynamically sync status bar / theme color with active tab
+  useEffect(() => {
+    const topColor = (activeTab === 'menu' || activeTab === 'profile') ? '#e60067' : '#6588d3'
+    document.documentElement.style.setProperty('--theme-top-color', topColor)
+    const metaTheme = document.querySelector('meta[name="theme-color"]')
+    if (metaTheme) metaTheme.setAttribute('content', topColor)
+  }, [activeTab])
 
   const showToast = (msg) => {
     setToastMessage(msg)
@@ -117,6 +134,13 @@ export default function App() {
 
   return (
     <div className="phone-container">
+      {/* App Splash Loading Screen (Pink with Frank logo) */}
+      {isLoading && (
+        <div className="app-splash-screen">
+          <span className="splash-frank-logo">frank</span>
+        </div>
+      )}
+
       {/* Toast Notification */}
       {toastMessage && (
         <div className="toast-notification">
@@ -507,11 +531,112 @@ export default function App() {
       )}
 
       {/* =========================================================================
+          VIEW 4: EDUT (Student Deals with Skeletal Loading)
+         ========================================================================= */}
+      {activeTab === 'edut' && (
+        <div className="edut-view">
+          {/* Header */}
+          <header className="edut-header">
+            <div className="edut-header-icon" title="Sijainti">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div className="edut-header-pill">
+              Opiskelijaedut
+            </div>
+            <div className="edut-header-icon" title="Haku">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </div>
+          </header>
+
+          {/* Categories Horizontal Bar */}
+          <div className="edut-categories">
+            <span className="edut-category-tab edut-category-tab--active">Suositukset</span>
+            <span className="edut-category-tab">Vaatteet & asusteet</span>
+            <span className="edut-category-tab">Vapaa-aika & viihde</span>
+          </div>
+
+          {/* Skeletal Loading Content (No images) */}
+          <div className="edut-content">
+            {/* Hero Banner Skeleton */}
+            <div className="edut-skeleton-banner skeleton-shimmer" />
+
+            {/* Pagination Dots */}
+            <div className="edut-skeleton-dots">
+              <div className="edut-skeleton-dot edut-skeleton-dot--active" />
+              <div className="edut-skeleton-dot" />
+              <div className="edut-skeleton-dot" />
+            </div>
+
+            {/* Section Title Skeleton */}
+            <div className="edut-skeleton-title-row">
+              <div className="edut-skeleton-title skeleton-shimmer" />
+              <div className="edut-skeleton-subtitle skeleton-shimmer" />
+            </div>
+
+            {/* Two Side-by-Side Card Skeletons */}
+            <div className="edut-skeleton-cards">
+              <div className="edut-skeleton-card">
+                <div className="edut-skeleton-card-img skeleton-shimmer" />
+                <div className="edut-skeleton-line edut-skeleton-line--brand skeleton-shimmer" />
+                <div className="edut-skeleton-line edut-skeleton-line--text skeleton-shimmer" />
+                <div className="edut-skeleton-line edut-skeleton-line--sub skeleton-shimmer" />
+                <div className="edut-skeleton-btn" />
+              </div>
+
+              <div className="edut-skeleton-card">
+                <div className="edut-skeleton-card-img skeleton-shimmer" />
+                <div className="edut-skeleton-line edut-skeleton-line--brand skeleton-shimmer" />
+                <div className="edut-skeleton-line edut-skeleton-line--text skeleton-shimmer" />
+                <div className="edut-skeleton-line edut-skeleton-line--sub skeleton-shimmer" />
+                <div className="edut-skeleton-btn" />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          VIEW 5: VIESTIT (Messages View)
+         ========================================================================= */}
+      {activeTab === 'viestit' && (
+        <div className="viestit-view">
+          {/* Header */}
+          <header className="viestit-header">
+            <span className="viestit-header-logo">frank</span>
+            <div className="viestit-header-pill">
+              Viestit
+            </div>
+          </header>
+
+          {/* Sub-tabs */}
+          <div className="viestit-tabs">
+            <span className="viestit-tab viestit-tab--active">Frank</span>
+            <span className="viestit-tab">Student Union</span>
+          </div>
+
+          {/* Empty State matching screenshot */}
+          <div className="viestit-empty-state">
+            <p>Ei viestejä, nauti hiljaisuudesta 🤫.</p>
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
           BOTTOM NAVIGATION (Edut, Opiskelijakortti, Viestit, Menu)
          ========================================================================= */}
       <nav className="bottom-nav" aria-label="Alapalkin valikko">
-        {/* Tab 1: Edut (non-clickable) */}
-        <div className="nav-item nav-item--disabled">
+        {/* Tab 1: Edut */}
+        <button
+          className={`nav-item ${activeTab === 'edut' ? 'nav-item--active' : ''}`}
+          type="button"
+          onClick={() => setActiveTab('edut')}
+        >
           <div className="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="7" />
@@ -520,7 +645,8 @@ export default function App() {
             </svg>
           </div>
           <span className="nav-label">Edut</span>
-        </div>
+          {activeTab === 'edut' && <div className="nav-indicator" />}
+        </button>
 
         {/* Tab 2: Opiskelijakortti */}
         <button
@@ -542,8 +668,12 @@ export default function App() {
           {activeTab === 'card' && <div className="nav-indicator" />}
         </button>
 
-        {/* Tab 3: Viestit (non-clickable) */}
-        <div className="nav-item nav-item--disabled">
+        {/* Tab 3: Viestit */}
+        <button
+          className={`nav-item ${activeTab === 'viestit' ? 'nav-item--active' : ''}`}
+          type="button"
+          onClick={() => setActiveTab('viestit')}
+        >
           <div className="nav-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -551,7 +681,8 @@ export default function App() {
             </svg>
           </div>
           <span className="nav-label">Viestit</span>
-        </div>
+          {activeTab === 'viestit' && <div className="nav-indicator" />}
+        </button>
 
         {/* Tab 4: Menu */}
         <button

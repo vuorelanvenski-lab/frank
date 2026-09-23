@@ -20,8 +20,8 @@
   border: 7px solid #1c1c1e;
 }
 
-/* Responsive for real mobile screens */
-@media (max-width: 480px) {
+/* Responsive for real mobile screens (Full Bleed to edges) */
+@media (max-width: 768px) {
   .phone-container {
     width: 100vw;
     height: 100vh;
@@ -37,9 +37,9 @@
    Top Section: Header + Profile Avatar
    ======================================== */
 .card-top-section {
-  height: 42%;
-  min-height: 42%;
-  max-height: 42%;
+  height: 38%;
+  min-height: 38%;
+  max-height: 38%;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -48,14 +48,14 @@
   overflow: hidden;
 }
 
-/* Header - Bigger Top Bar */
+/* Header - Sits directly below status bar */
 .card-header {
   background-color: #6588d3;
-  padding-top: max(20px, env(safe-area-inset-top));
-  padding-bottom: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 16px;
   padding-right: 16px;
-  min-height: 86px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,21 +67,21 @@
   color: #ffffff;
   font-size: 14.5px;
   font-weight: 600;
-  padding: 7px 24px;
+  padding: 6px 22px;
   border-radius: 20px;
   letter-spacing: 0.2px;
   user-select: none;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
-/* Avatar Section pushed down a little bit */
+/* Avatar Section pushed down cleanly */
 .avatar-section {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-top: 10px;
+  padding-top: 2px;
 }
 
 .avatar-glow-wrapper {
@@ -91,13 +91,13 @@
   justify-content: center;
 }
 
-/* Profile Picture: Even bigger */
+/* Profile Picture: More compact with smaller, subtle blue glow */
 .avatar-circle {
   position: relative;
-  width: clamp(188px, 25vh, 218px);
-  height: clamp(188px, 25vh, 218px);
+  width: clamp(165px, 21vh, 192px);
+  height: clamp(165px, 21vh, 192px);
   border-radius: 50%;
-  box-shadow: 0 0 56px 20px rgba(101, 136, 211, 0.45);
+  box-shadow: 0 0 16px 3px rgba(101, 136, 211, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,13 +127,13 @@
   display: block;
 }
 
-/* Pure diffuse pulsing glow behind Frank badge - 1 pulse/sec (1s tempo) */
+/* Pure diffuse pulsing glow behind Frank badge - matching frank.png (#fd1e6e) */
 .frank-badge-glow {
   position: absolute;
-  bottom: 3px;
-  right: 3px;
-  width: clamp(58px, 7.8vh, 68px);
-  height: clamp(58px, 7.8vh, 68px);
+  bottom: 2px;
+  right: 2px;
+  width: clamp(52px, 6.8vh, 60px);
+  height: clamp(52px, 6.8vh, 60px);
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
@@ -142,28 +142,28 @@
 
 @keyframes frankPureGlowPulse {
   0% {
-    box-shadow: 0 0 6px 1px rgba(230, 0, 103, 0.2);
+    box-shadow: 0 0 6px 1px rgba(253, 30, 110, 0.2);
   }
   50% {
-    box-shadow: 0 0 14px 3px rgba(230, 0, 103, 0.5),
-                0 0 22px 6px rgba(230, 0, 103, 0.22);
+    box-shadow: 0 0 14px 3px rgba(253, 30, 110, 0.5),
+                0 0 22px 6px rgba(253, 30, 110, 0.22);
   }
   100% {
-    box-shadow: 0 0 6px 1px rgba(230, 0, 103, 0.2);
+    box-shadow: 0 0 6px 1px rgba(253, 30, 110, 0.2);
   }
 }
 
-/* Frank hot-pink circular badge */
+/* Frank circular badge - transparent background so colors match perfectly */
 .frank-badge {
   position: absolute;
-  bottom: 3px;
-  right: 3px;
-  width: clamp(58px, 7.8vh, 68px);
-  height: clamp(58px, 7.8vh, 68px);
+  bottom: 2px;
+  right: 2px;
+  width: clamp(52px, 6.8vh, 60px);
+  height: clamp(52px, 6.8vh, 60px);
   border-radius: 50%;
-  background: #e60067;
+  background: transparent;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,8 +177,8 @@
 }
 
 .frank-badge-img {
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
 }
@@ -190,54 +190,52 @@
   flex: 1;
   min-height: 0; /* Critical so flex child shrinks properly */
   background: #ffffff;
-  padding: 4px 24px 14px 24px;
+  padding: 2px 22px 8px 22px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.card-body::-webkit-scrollbar {
-  display: none;
+  overflow: hidden; /* Strictly non-scrollable */
+  touch-action: none;
+  overscroll-behavior: none;
 }
 
 /* Student Identity (Name & DOB) */
 .student-identity {
-  margin-top: 6px;
+  margin-top: 4px;
   text-align: left;
 }
 
 .student-name {
-  font-size: clamp(23px, 3vh, 26.5px);
+  font-size: clamp(22px, 2.7vh, 25px);
   font-weight: 800;
   color: #000000;
   letter-spacing: -0.4px;
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
-/* More spacing between birthdate and name */
+/* Tighter spacing under birthdate */
 .student-birthdate {
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 500;
   color: #222222;
-  margin: 8px 0 12px 0;
+  margin: 4px 0 8px 0;
   letter-spacing: 0.1px;
 }
 
-/* Dividers */
+/* Clearly visible crisp dividers */
 .card-divider {
   height: 1px;
-  background: #e5e7eb;
-  margin: 10px 0;
+  background: #d1d5db;
+  margin: 6px 0;
+  width: 100%;
 }
 
-/* Institution & SYL Row - Bigger Typography */
+/* Institution & SYL Row */
 .institution-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1px 0;
+  padding: 0;
 }
 
 .institution-info {
@@ -333,35 +331,35 @@
 /* Small gap between validity date and button */
 .validity-date-row {
   margin-top: 2px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   display: flex;
   align-items: baseline;
   gap: 7px;
 }
 
 .validity-date-number {
-  font-size: clamp(24px, 3.3vh, 27.5px);
+  font-size: clamp(23px, 3vh, 26px);
   font-weight: 800;
   color: #000000;
   letter-spacing: -0.3px;
 }
 
 .validity-date-suffix {
-  font-size: clamp(21px, 2.8vh, 24px);
+  font-size: clamp(20px, 2.6vh, 23px);
   font-weight: 500;
   color: #000000;
   letter-spacing: -0.2px;
 }
 
-/* Action button: small space above, generous space below before bottom bar */
+/* Action button: tighter space */
 .inspection-button {
   background-color: #6588d3;
   color: #ffffff;
   border: none;
   border-radius: 25px;
-  height: clamp(46px, 5.8vh, 50px);
+  height: clamp(44px, 5.4vh, 48px);
   width: 100%;
-  font-size: clamp(14.5px, 1.8vh, 15.5px);
+  font-size: clamp(14px, 1.8vh, 15px);
   font-weight: 600;
   letter-spacing: 0.1px;
   cursor: pointer;
@@ -371,8 +369,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 6px;
-  margin-bottom: 18px;
+  margin-top: 4px;
+  margin-bottom: 10px;
   flex-shrink: 0;
 }
 
@@ -525,18 +523,20 @@
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden; /* Strictly non-scrollable */
+  touch-action: none;
+  overscroll-behavior: none;
 }
 
 /* Pink Header */
 .menu-header {
   background: #e60067;
-  min-height: 84px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: max(8px, env(safe-area-inset-top));
+  padding-top: 10px;
+  padding-bottom: 10px;
   flex-shrink: 0;
 }
 
@@ -688,7 +688,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
-  padding-top: max(10px, env(safe-area-inset-top));
+  padding-top: max(44px, env(safe-area-inset-top));
   color: #ffffff;
   flex-shrink: 0;
 }
@@ -896,4 +896,342 @@
 
 .btn-reset-profile:hover {
   color: #ef4444;
+}
+
+/* ========================================
+   Skeletal Shimmer Animation
+   ======================================== */
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f0f2f5 25%, #e2e6eb 50%, #f0f2f5 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.8s ease-in-out infinite;
+}
+
+/* ========================================
+   Edut View (Skeletal Loading, No Images)
+   ======================================== */
+.edut-view {
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.edut-header {
+  background: #e60067;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.edut-header-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.edut-header-pill {
+  background: rgba(0, 0, 0, 0.14);
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 6px 20px;
+  border-radius: 20px;
+  letter-spacing: 0.1px;
+}
+
+.edut-categories {
+  display: flex;
+  gap: 22px;
+  padding: 12px 18px 0 18px;
+  border-bottom: 1px solid #f0f2f5;
+  overflow-x: hidden;
+  flex-shrink: 0;
+}
+
+.edut-category-tab {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #4b5563;
+  padding-bottom: 8px;
+  white-space: nowrap;
+  position: relative;
+  cursor: pointer;
+}
+
+.edut-category-tab--active {
+  color: #111827;
+  font-weight: 700;
+}
+
+.edut-category-tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: #e60067;
+  border-radius: 2px 2px 0 0;
+}
+
+.edut-content {
+  flex: 1;
+  min-height: 0;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.edut-skeleton-banner {
+  width: 100%;
+  height: clamp(110px, 15vh, 135px);
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+.edut-skeleton-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: -4px 0 2px 0;
+}
+
+.edut-skeleton-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d1d5db;
+}
+
+.edut-skeleton-dot--active {
+  background: #111827;
+}
+
+.edut-skeleton-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.edut-skeleton-title {
+  width: 110px;
+  height: 16px;
+  border-radius: 6px;
+}
+
+.edut-skeleton-subtitle {
+  width: 65px;
+  height: 14px;
+  border-radius: 6px;
+}
+
+.edut-skeleton-cards {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.edut-skeleton-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  border: 1px solid #f0f2f5;
+  border-radius: 14px;
+  padding: 8px;
+  background: #ffffff;
+}
+
+.edut-skeleton-card-img {
+  width: 100%;
+  height: clamp(80px, 11vh, 100px);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.edut-skeleton-line {
+  border-radius: 4px;
+}
+
+.edut-skeleton-line--brand {
+  width: 50%;
+  height: 11px;
+}
+
+.edut-skeleton-line--text {
+  width: 90%;
+  height: 12px;
+}
+
+.edut-skeleton-line--sub {
+  width: 70%;
+  height: 12px;
+}
+
+.edut-skeleton-btn {
+  height: 32px;
+  border-radius: 20px;
+  border: 1.5px solid #e5e7eb;
+  background: #ffffff;
+  margin-top: auto;
+}
+
+/* ========================================
+   Viestit View
+   ======================================== */
+.viestit-view {
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+.viestit-header {
+  background: #e60067;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  position: relative;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.viestit-header-logo {
+  position: absolute;
+  left: 18px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+}
+
+.viestit-header-pill {
+  background: rgba(0, 0, 0, 0.14);
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 5px 22px;
+  border-radius: 20px;
+}
+
+.viestit-tabs {
+  display: flex;
+  gap: 24px;
+  padding: 14px 20px 0 20px;
+  border-bottom: 1px solid #f0f2f5;
+  flex-shrink: 0;
+}
+
+.viestit-tab {
+  font-size: 15px;
+  font-weight: 500;
+  color: #4b5563;
+  padding-bottom: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.viestit-tab--active {
+  color: #111827;
+  font-weight: 700;
+}
+
+.viestit-tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: #e60067;
+  border-radius: 2px 2px 0 0;
+}
+
+.viestit-empty-state {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 34px 20px;
+  color: #374151;
+  font-size: 15.5px;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* ========================================
+   App Splash Screen (Pink with Frank logo)
+   ======================================== */
+.app-splash-screen {
+  position: absolute;
+  inset: 0;
+  background-color: #e60067;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splashFadeOut 0.4s ease-out 1.5s forwards;
+  pointer-events: none;
+}
+
+@keyframes splashFadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.splash-frank-logo {
+  color: #ffffff;
+  font-size: 58px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  user-select: none;
+  animation: splashPulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes splashPulse {
+  from {
+    transform: scale(0.96);
+    opacity: 0.92;
+  }
+  to {
+    transform: scale(1.04);
+    opacity: 1;
+  }
 }

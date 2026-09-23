@@ -5,6 +5,9 @@
     <link rel="icon" type="image/png" href="/frank.png" />
     <link rel="apple-touch-icon" href="/frank.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Frank" />
     <meta name="description" content="Frank - Opiskelijakortti ja opiskelijaedut" />
     <meta name="theme-color" content="#6588d3" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +17,11 @@
     <title>Frank APp</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="position: fixed; inset: 0; background: #e60067; display: flex; align-items: center; justify-content: center; z-index: 99999;">
+        <span style="color: #ffffff; font-size: 58px; font-weight: 800; letter-spacing: -1.5px; font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;">frank</span>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
